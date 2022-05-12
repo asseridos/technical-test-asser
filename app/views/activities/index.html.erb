@@ -1,0 +1,16 @@
+<h1>Activity feed</h1>
+<p>All activities:</p>
+<div class="list-group">
+  <% @activities.each do |activity| %>
+    <div class="list-group-item list-group-item-action mb-4" target='_blank' rel='noopener'>
+      <h5 class="mb-1">
+        <%= link_to activity.member.email, member_path(activity.member) %>
+        did <%= activity.action %>
+      </h5>
+      <p class="mb-1 ps-2 border-start border-3 text-secondary"><%= activity.description %></p>
+      <%= link_to activity.url, target: "_blank", rel: "noopener" do %>
+        <small class="text-primary"><%= activity.url %></small>
+      <% end %>
+    </div>
+  <% end %>
+</div>

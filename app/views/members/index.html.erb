@@ -1,0 +1,23 @@
+<h1>Our Members</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col">Name</th>
+      <th scope="col">GitHub</th>
+      <th scope="col">Twitter</th>
+      <th scope="col">Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @members.each do |member| %>
+      <tr>
+        <th scope="row"><%= link_to member.email, member_path(member) %></th>
+        <td><%= member.name %></td>
+        <td><%= member.github %></td>
+        <td><%= member.twitter %></td>
+        <td><%= member.location %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

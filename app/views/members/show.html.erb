@@ -1,0 +1,57 @@
+<h1><%= @member.email %>’s profile</h1>
+<div class="d-flex">
+  <div class="w-25">
+    <h2>About</h2>
+    <div class="card" style="width: 18rem;">
+      <ul class="list-group list-group-flush">
+        <% if @member.name.present? %>
+          <li class="list-group-item">Name: <%= @member.name %></li>
+        <% end %>
+        <% if @member.email.present? %>
+          <li class="list-group-item">Email: <%= @member.email %></li>
+        <% end %>
+        <% if @member.github.present? %>
+          <li class="list-group-item">GitHub: <%= @member.github %></li>
+        <% end %>
+        <% if @member.twitter.present? %>
+          <li class="list-group-item">Twitter: <%= @member.twitter %></li>
+        <% end %>
+        <% if @member.location.present? %>
+          <li class="list-group-item">Location: <%= @member.location %></li>
+        <% end %>
+      </ul>
+      <div class="card-body">
+        <%= link_to 'Add a note', new_member_notes_path(@member),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#noteModal', class: 'text-primary'}  %>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h2>Their notes</h2>
+    <% @member.notes.each do |note| %>
+      <figure>
+        <blockquote class="blockquote">
+          <p><%= note.body %></p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+          <%= note.created_at %>
+        </figcaption>
+      </figure>
+    <% end %>
+    <h2>Their activities</h2>
+    <div class="list-group">
+      <%= link_to @member.activity.url, class: "list-group-item list-group-item-action mb-4", target: '_blank', rel: 'noopener' do %>
+        <h5 class="mb-1"><%= @member.activity.action %></h5>
+        <p class="mb-1 ps-2 border-start border-3 text-secondary"><%= @member.activity.description %></p>
+        <small class="text-primary"><%= @member.activity.url %></small>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div id="noteModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+    </div>
+  </div>
+</div>

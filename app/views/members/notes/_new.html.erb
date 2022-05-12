@@ -1,0 +1,19 @@
+<%= form_for @note, url: member_notes_path(@note.member), remote: true do |form| %>
+  <div class="modal-header">
+    <h5 class="modal-title">Add a note</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <div>
+      <%= form.label :body, class: 'form-label' %><br>
+      <%= form.text_field :body, class: 'form-control' %>
+      <% @note.errors.full_messages_for(:body).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <%= form.submit 'Save', class: 'btn btn-primary' %>
+  </div>
+<% end %>
