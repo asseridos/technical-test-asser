@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  type: 
+  type_of_content: TypeOne
   description: MyText
   url: MyString
   member: one
 
 two:
-  type: 
+  type_of_content: TypeTwo
   description: MyText
   url: MyString
   member: two

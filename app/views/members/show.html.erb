@@ -32,13 +32,13 @@
     <h2>Their content</h2>
     <% @member.contents.each do |content| %>
       <figure>
-        <blockquote class="blockquote">
+        <blockquote class="blockquote type_of_content">
           <p><%= content.type_of_content %></p>
         </blockquote>
-        <blockquote class="blockquote">
+        <blockquote class="blockquote description">
           <p><%= content.description %></p>
         </blockquote>
-        <blockquote class="blockquote">
+        <blockquote class="blockquote url">
           <p><%= content.url %></p>
         </blockquote>
         <figcaption class="blockquote-footer">
