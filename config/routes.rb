@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :contents
   root :to => "members#index"
 
   resources :members, only: %i[index show] do
