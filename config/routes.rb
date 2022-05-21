@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :tags
   root :to => "members#index"
 
   resources :members, only: %i[index show] do

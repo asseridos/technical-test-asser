@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_21_090548) do
+ActiveRecord::Schema.define(version: 2022_05_21_144227) do
 
   create_table "activities", force: :cascade do |t|
     t.integer "member_id", null: false
@@ -42,6 +42,13 @@ ActiveRecord::Schema.define(version: 2022_05_21_090548) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "members_tags", force: :cascade do |t|
+    t.integer "member_id", null: false
+    t.integer "tag_id", null: false
+    t.index ["member_id"], name: "index_members_tags_on_member_id"
+    t.index ["tag_id"], name: "index_members_tags_on_tag_id"
+  end
+
   create_table "notes", force: :cascade do |t|
     t.integer "member_id", null: false
     t.text "body"
@@ -50,7 +57,15 @@ ActiveRecord::Schema.define(version: 2022_05_21_090548) do
     t.index ["member_id"], name: "index_notes_on_member_id"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   add_foreign_key "activities", "members"
   add_foreign_key "contents", "members"
+  add_foreign_key "members_tags", "members"
+  add_foreign_key "members_tags", "tags"
   add_foreign_key "notes", "members"
 end
