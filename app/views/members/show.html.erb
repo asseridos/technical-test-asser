@@ -33,7 +33,7 @@
     <% @member.contents.each do |content| %>
       <figure>
         <blockquote class="blockquote">
-          <p><%= content.type %></p>
+          <p><%= content.type_of_content %></p>
         </blockquote>
         <blockquote class="blockquote">
           <p><%= content.description %></p>
@@ -64,10 +64,12 @@
     <br/>
     <h2>Their activities</h2>
     <div class="list-group">
-      <%= link_to @member.activity.url, class: "list-group-item list-group-item-action mb-4", target: '_blank', rel: 'noopener' do %>
-        <h5 class="mb-1"><%= @member.activity.action %></h5>
-        <p class="mb-1 ps-2 border-start border-3 text-secondary"><%= @member.activity.description %></p>
-        <small class="text-primary"><%= @member.activity.url %></small>
+      <% @member.activities.each do |activity| %>
+        <%= link_to activity.url, class: "list-group-item list-group-item-action mb-4", target: '_blank', rel: 'noopener' do %>
+          <h5 class="mb-1"><%= activity.action %></h5>
+          <p class="mb-1 ps-2 border-start border-3 text-secondary"><%= activity.description %></p>
+          <small class="text-primary"><%= activity.url %></small>
+        <% end %>
       <% end %>
     </div>
   </div>

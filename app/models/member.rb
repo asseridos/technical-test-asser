@@ -1,5 +1,5 @@
 class Member < ApplicationRecord
-    has_one :activity
+    has_many :activities
     has_many :notes
     has_many :contents
 end

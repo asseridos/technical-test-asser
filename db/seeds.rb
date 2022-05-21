@@ -3,20 +3,19 @@
 #
 require 'csv'
 
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'seeds.csv'))
+csv_text = File.read(Rails.root.join('seeds_multiple_activities.txt'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 
 csv.each do |row|
-  member = Member.new(
+  member = Member.find_by(
     name: row['member_name'],
     email: row['member_email'],
     github: row['member_github'],
     twitter: row['member_twitter'],
     location: row['member_location']
   )
-  member.save!
 
-  activity = Activity.new(
+  activity = Activity.find_or_initialize_by(
     member: member,
     action: row['activity_action'],
     description: row['activity_description'],
@@ -25,3 +24,27 @@ csv.each do |row|
 
   activity.save!
 end
+
+
+# csv_text = File.read(Rails.root.join('lib', 'seeds', 'seeds.csv'))
+# csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+
+# csv.each do |row|
+#   member = Member.new(
+#     name: row['member_name'],
+#     email: row['member_email'],
+#     github: row['member_github'],
+#     twitter: row['member_twitter'],
+#     location: row['member_location']
+#   )
+#   member.save!
+
+#   activity = Activity.new(
+#     member: member,
+#     action: row['activity_action'],
+#     description: row['activity_description'],
+#     url: row['activity_url'],
+#   )
+
+#   activity.save!
+# end
