@@ -6,7 +6,7 @@ module Members
     def new
       @member = Member.find(params[:member_id])
       @note = @member.notes.new
-      respond_with @workspace, @member, @note
+      respond_with @member, @note
     end
 
     def create
