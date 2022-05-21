@@ -14,17 +14,41 @@ csv.each do |row|
     twitter: row['member_twitter'],
     location: row['member_location']
   )
-
-  activity = Activity.find_or_initialize_by(
-    member: member,
-    action: row['activity_action'],
-    description: row['activity_description'],
-    url: row['activity_url'],
-  )
-
-  activity.save!
+  if !row['member_tags'].nil?
+    row['member_tags']&.split(',').each do |tag|
+      tag = Tag.find_or_initialize_by(
+        name: tag
+      )
+      tag.members << member
+      tag.save!
+      member.tags << tag
+      member.save!
+    end
+  end
 end
 
+# Second seed
+
+# csv.each do |row|
+#   member = Member.find_by(
+#     name: row['member_name'],
+#     email: row['member_email'],
+#     github: row['member_github'],
+#     twitter: row['member_twitter'],
+#     location: row['member_location']
+#   )
+
+#   activity = Activity.find_or_initialize_by(
+#     member: member,
+#     action: row['activity_action'],
+#     description: row['activity_description'],
+#     url: row['activity_url'],
+#   )
+
+#   activity.save!
+# end
+
+# First seed
 
 # csv_text = File.read(Rails.root.join('lib', 'seeds', 'seeds.csv'))
 # csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')

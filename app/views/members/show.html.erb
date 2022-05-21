@@ -19,6 +19,9 @@
         <% if @member.location.present? %>
           <li class="list-group-item">Location: <%= @member.location %></li>
         <% end %>
+        <% if @member.tags.present? %>
+          <li class="list-group-item">Tags: <%= @member.tags.pluck(:name).join(', ') %></li>
+        <% end %>
       </ul>
       <div class="card-body">
         <%= link_to 'Add a note', new_member_notes_path(@member),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#noteModal', class: 'text-primary'}  %>
