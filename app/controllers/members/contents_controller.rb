@@ -41,7 +41,7 @@ module Members
         private
 
         def content_params
-            params.require(:content).permit(:description, :url)
+            params.require(:content).permit(:description, :url, :type)
         end
     end
 end
