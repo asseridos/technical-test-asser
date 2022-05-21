@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_10_090609) do
+ActiveRecord::Schema.define(version: 2022_05_21_071418) do
 
   create_table "activities", force: :cascade do |t|
     t.integer "member_id", null: false
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 2021_11_10_090609) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["member_id"], name: "index_activities_on_member_id"
+  end
+
+  create_table "contents", force: :cascade do |t|
+    t.string "type"
+    t.text "description"
+    t.string "url"
+    t.integer "member_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["member_id"], name: "index_contents_on_member_id"
   end
 
   create_table "members", force: :cascade do |t|
@@ -41,5 +51,6 @@ ActiveRecord::Schema.define(version: 2021_11_10_090609) do
   end
 
   add_foreign_key "activities", "members"
+  add_foreign_key "contents", "members"
   add_foreign_key "notes", "members"
 end

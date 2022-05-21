@@ -23,9 +23,33 @@
       <div class="card-body">
         <%= link_to 'Add a note', new_member_notes_path(@member),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#noteModal', class: 'text-primary'}  %>
       </div>
+      <div class="card-body">
+        <%= link_to 'Add a content', new_member_contents_path(@member),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#contentModal', class: 'text-primary'}  %>
+      </div>
     </div>
   </div>
   <div>
+    <h2>Their content</h2>
+    <% @member.contents.each do |content| %>
+      <figure>
+        <blockquote class="blockquote">
+          <p><%= content.type %></p>
+        </blockquote>
+        <blockquote class="blockquote">
+          <p><%= content.description %></p>
+        </blockquote>
+        <blockquote class="blockquote">
+          <p><%= content.url %></p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+          <%= content.created_at %>
+        </figcaption>
+        <div>
+          <%# <%= link_to 'Edit the content', edit_member_contents_path(content),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#contentModal', class: 'text-secondary'} %>
+        </div>
+      </figure>
+    <% end %>
+    <br/>
     <h2>Their notes</h2>
     <% @member.notes.each do |note| %>
       <figure>
@@ -37,6 +61,7 @@
         </figcaption>
       </figure>
     <% end %>
+    <br/>
     <h2>Their activities</h2>
     <div class="list-group">
       <%= link_to @member.activity.url, class: "list-group-item list-group-item-action mb-4", target: '_blank', rel: 'noopener' do %>
@@ -49,6 +74,14 @@
 </div>
 
 <div id="noteModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+    </div>
+  </div>
+</div>
+
+<div id="contentModal" class="modal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       
