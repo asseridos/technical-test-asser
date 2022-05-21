@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
   def index
-    @members = Member.all
+    @members = MemberService.sort_by_most_activities_count()
   end
 
   def show
