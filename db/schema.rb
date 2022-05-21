@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_21_071418) do
+ActiveRecord::Schema.define(version: 2022_05_21_090548) do
 
   create_table "activities", force: :cascade do |t|
     t.integer "member_id", null: false
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2022_05_21_071418) do
   end
 
   create_table "contents", force: :cascade do |t|
-    t.string "type"
+    t.string "type_of_content"
     t.text "description"
     t.string "url"
     t.integer "member_id", null: false
