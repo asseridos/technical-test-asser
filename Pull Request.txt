@@ -1,0 +1,19 @@
+This PR contains the features I added for the Mini-Orbit application. I worked on the first three user stories and the last bonus. For me, they were the most interesting for the end goal.
+
+No gem has been added.
+
+- For the first user story, at first I intended to add a column for the content in Member model but I finally added a new model `Content` because a user should not be limited to only one content. 
+    - I also created the columns `type` and `description`. The description is useful for knowing what the content is about and the type might be useful in the future if we want to analyze the shared content.
+       
+- For the second user story, there was not much change.
+    - I changed the `has_one` association to a `has_many` association.
+    - I updated the member profile view to take into account activities.
+    - Oh, the CSV file has been really helpful to seed activities into the database, thanks.
+
+- For the third user story, I had doubts while working on it. As I explained in the commit, there can be many ways to tell if a member is active or not. 
+      - The easier one is to take the member with the biggest number of activities. For our situation, I think it's enough since the Mini-Orbit app does not have an important number of users yet. But when we get bigger, it might not be the more accurate way to see things. In fact, a member can create a lot of activities and disappear for a time. We would be counting that user as one of our most active members even though he's been inactive for many months.
+     - A way to counter that is to take into account only the members that have created activities during the last month. With that, we would have people who have been active recently appear in the feed first.
+
+- Finally I decided to work on the `tags` because it's more in sync with Erin's initial goal to send swag and perks to our most active community members. The tags will be really useful for choosing the kind of perks to send them. Using the tags of the active members, we can know better what would make them happy.
+
+I also added some tests for Activity and Content.
